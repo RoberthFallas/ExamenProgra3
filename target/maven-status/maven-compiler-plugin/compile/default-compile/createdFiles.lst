@@ -1,2 +1,11 @@
-org/una/ExamFinal/entities/Tarea.class
-org/una/ExamFinal/dto/ProyectoDto.class
+org\una\ExamFinal\dto\ProvinciaDto.class
+org\una\ExamFinal\entities\Provincia.class
+org\una\ExamFinal\dto\UnidadDto.class
+org\una\ExamFinal\dto\TipoUnidadDto.class
+org\una\ExamFinal\ExamenFinalWsApplication.class
+org\una\ExamFinal\dto\CantonDto.class
+org\una\ExamFinal\dto\DistritoDto.class
+org\una\ExamFinal\entities\Canton.class
+org\una\ExamFinal\entities\TipoUnidad.class
+org\una\ExamFinal\entities\Distrito.class
+org\una\ExamFinal\entities\Unidad.class
