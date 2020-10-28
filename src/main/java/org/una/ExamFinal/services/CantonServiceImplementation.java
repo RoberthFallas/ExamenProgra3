@@ -5,28 +5,51 @@
  */
 package org.una.ExamFinal.services;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.una.ExamFinal.dto.CantonDto;
+import org.una.ExamFinal.entities.Canton;
+import org.una.ExamFinal.repositories.ICantonRepository;
+import org.una.ExamFinal.utils.MapperUtils;
 
 /**
  *
  * @author roberth
  */
-public class CantonServiceImplementation implements ICantonService{
+@Service
+public class CantonServiceImplementation implements ICantonService {
+
+    @Autowired
+    private ICantonRepository cantonRepo;
 
     @Override
     public CantonDto create(CantonDto canton) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Canton entityUnid = MapperUtils.entityFromDto(canton, Canton.class);
+        entityUnid = cantonRepo.save(entityUnid);
+        return MapperUtils.DtoFromEntity(entityUnid, CantonDto.class);
     }
 
     @Override
     public CantonDto update(CantonDto canton) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Optional<Canton> result = cantonRepo.findById(canton.getId());
+        if (result.isPresent()) {
+            Canton entity = MapperUtils.entityFromDto(canton, Canton.class);
+            entity = cantonRepo.save(entity);
+            return MapperUtils.DtoFromEntity(entity, CantonDto.class);
+        }
+        return null;
     }
 
     @Override
     public List<CantonDto> findByProvincia(Long ProvinciaId) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        List<Canton> result = cantonRepo.findByProvinciaId(ProvinciaId);
+        if (!result.isEmpty()) {
+            return MapperUtils.DtoListFromEntityList(result, CantonDto.class);
+        }
+        return new ArrayList();
     }
-    
+
 }

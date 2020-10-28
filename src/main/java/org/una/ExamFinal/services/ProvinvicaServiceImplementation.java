@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.una.ExamFinal.dto.ProvinciaDto;
 import org.una.ExamFinal.utils.MapperUtils;
 import org.una.ExamFinal.entities.Provincia;
@@ -18,6 +19,7 @@ import org.una.ExamFinal.repositories.IProvivnciaRepository;
  *
  * @author roberth
  */
+@Service
 public class ProvinvicaServiceImplementation implements IProvinviaService {
 
     @Autowired

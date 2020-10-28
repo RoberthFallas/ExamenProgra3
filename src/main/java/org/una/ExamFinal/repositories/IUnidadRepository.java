@@ -5,6 +5,7 @@
  */
 package org.una.ExamFinal.repositories;
 
+import java.util.List;
 import org.una.ExamFinal.entities.Unidad;
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -14,4 +15,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
  */
 public interface IUnidadRepository extends JpaRepository<Unidad, Long> {
 
+    public List<Unidad> findByDistritoId(Long id);
 }

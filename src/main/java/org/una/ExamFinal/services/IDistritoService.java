@@ -6,7 +6,6 @@
 package org.una.ExamFinal.services;
 
 import org.una.ExamFinal.dto.DistritoDto;
-import org.una.ExamFinal.dto.UnidadDto;
 
 import java.util.List;
 
@@ -20,5 +19,5 @@ public interface IDistritoService {
 
     public DistritoDto update(DistritoDto distrito);
 
-    public List<UnidadDto> findByCanton(Long cantonId);
+    public List<DistritoDto> findByCanton(Long cantonId);
 }

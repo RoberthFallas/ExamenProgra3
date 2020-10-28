@@ -5,28 +5,55 @@
  */
 package org.una.ExamFinal.services;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.una.ExamFinal.dto.UnidadDto;
+import org.una.ExamFinal.entities.Unidad;
+import org.una.ExamFinal.repositories.IUnidadRepository;
+import org.una.ExamFinal.utils.MapperUtils;
 
 /**
  *
- * @author rober
+ * @author roberth
  */
+@Service
 public class UnidadServiceImplementation implements IUnidadService {
 
+    @Autowired
+    private IUnidadRepository unidadRepo;
+
     @Override
+    @Transactional
     public UnidadDto create(UnidadDto unidad) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Unidad entityUnid = MapperUtils.entityFromDto(unidad, Unidad.class);
+        entityUnid = unidadRepo.save(entityUnid);
+        return MapperUtils.DtoFromEntity(entityUnid, UnidadDto.class);
     }
 
     @Override
+    @Transactional
     public UnidadDto update(UnidadDto unidad) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Optional<Unidad> result = unidadRepo.findById(unidad.getId());
+        if (result.isPresent()) {
+            Unidad entity = MapperUtils.entityFromDto(unidad, Unidad.class);
+            entity = unidadRepo.save(entity);
+            return MapperUtils.DtoFromEntity(entity, UnidadDto.class);
+        }
+        return null;
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<UnidadDto> findByDistrito(Long distritoId) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        List<Unidad> result = unidadRepo.findByDistritoId(distritoId);
+        if (!result.isEmpty()) {
+            return MapperUtils.DtoListFromEntityList(result, UnidadDto.class);
+        }
+        return new ArrayList();
     }
 
 }
