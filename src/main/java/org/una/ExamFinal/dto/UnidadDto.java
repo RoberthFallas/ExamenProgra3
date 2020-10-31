@@ -5,6 +5,7 @@
  */
 package org.una.ExamFinal.dto;
 
+import java.util.Date;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -30,5 +31,5 @@ public class UnidadDto {
     private TipoUnidadDto tipoUnidad;
     @Setter(AccessLevel.NONE)
     private DistritoDto distrito;
-
+    private Date fecha_actualizacion;
 }
