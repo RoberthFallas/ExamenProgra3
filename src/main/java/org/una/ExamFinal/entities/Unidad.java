@@ -15,6 +15,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -58,5 +60,15 @@ public class Unidad implements Serializable {
     @JoinColumn(name = "exa_rob_distrito_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Distrito distrito;
+
+    @PrePersist
+    public void prePersist() {
+        fecha_actualizacion = new Date();
+    }
+
+    @PreUpdate
+    public void PreUpdate() {
+        fecha_actualizacion = new Date();
+    }
 
 }
